@@ -114,6 +114,7 @@ export default function App() {
           // @ts-ignore
           mode={dateTimePickerMode}
           onChange={(event, dateString) => {
+            console.log("dateString", dateString);
             setShowDatePicker(false);
             if (dateString) {
               if (dateTimePickerMode === "date") {
@@ -123,13 +124,17 @@ export default function App() {
                 setShowDatePicker(true);
               } else if (dateTimePickerMode === "time") {
                 const time = new Date(dateString) || new Date();
+                console.log("time", time);
                 const hours = time.getHours();
+                console.log("hours", hours);
                 const minutes = time.getMinutes();
+                console.log("minutes", minutes);
                 const seconds = 0;
                 const newDate = new Date(selectedDate);
+                console.log("newDate", newDate.toLocaleDateString());
                 newDate.setHours(hours, minutes, seconds);
                 setSelectedDate(newDate);
-                addTask(new Date());
+                addTask(newDate);
               }
             } else {
               setDateTimePickerMode("date");
