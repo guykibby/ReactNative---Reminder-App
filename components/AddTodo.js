@@ -11,22 +11,18 @@ const styles = StyleSheet.create({
   text: { width: "100%", height: "100%" },
 });
 
-// TIP: this component has bad naming that creates confusion
 const AddTodo = ({ add }) => {
   const [name, setName] = useState("");
-  const newAdd = (n) => {
-    newName(n.name);
+
+  const newAdd = () => {
+    add(name);
+    setName("");
   };
+
   const newAddName = (e) => {
     setName(e);
   };
-  const newName = (a) => {
-    newAddName(a);
-  };
-  const test = () => {
-    console.log(name);
-    add(name);
-  };
+
   return (
     <View style={styles.container}>
       <View style={styles.newContainer}>
