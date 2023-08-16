@@ -21,7 +21,7 @@ const TodoItem = ({ item }) => {
           }}
         >
           <Text>{item.name}</Text>
-          <Text>{item.timestamp.toLocaleDateString()}</Text>
+          <Text>{item.timestamp.toDateString()}</Text>
           <Text>
             {item.timestamp.toLocaleTimeString([], {
               hour: "2-digit",
