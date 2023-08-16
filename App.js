@@ -110,29 +110,27 @@ export default function App() {
       {showDatePicker ? (
         <DateTimePicker
           testID="dateTimePicker"
-          value={new Date()}
+          value={selectedDate}
           // @ts-ignore
           mode={dateTimePickerMode}
-          onChange={(event, dateString) => {
-            console.log("dateString", dateString);
+          onChange={(event, selectedValue) => {
+            console.log("selectedValue", selectedValue);
             setShowDatePicker(false);
-            if (dateString) {
+
+            if (selectedValue) {
+              const currentSelectedDate = new Date(selectedValue);
+
               if (dateTimePickerMode === "date") {
-                const date = new Date(dateString) || new Date();
-                setSelectedDate(date);
+                setSelectedDate(currentSelectedDate);
                 setDateTimePickerMode("time");
                 setShowDatePicker(true);
               } else if (dateTimePickerMode === "time") {
-                const time = new Date(dateString) || new Date();
-                console.log("time", time);
-                const hours = time.getHours();
-                console.log("hours", hours);
-                const minutes = time.getMinutes();
-                console.log("minutes", minutes);
-                const seconds = 0;
                 const newDate = new Date(selectedDate);
-                console.log("newDate", newDate.toLocaleDateString());
-                newDate.setHours(hours, minutes, seconds);
+                console.log("newDate", newDate);
+                newDate.setHours(
+                  currentSelectedDate.getHours(),
+                  currentSelectedDate.getMinutes()
+                );
                 setSelectedDate(newDate);
                 addTask(newDate);
               }
