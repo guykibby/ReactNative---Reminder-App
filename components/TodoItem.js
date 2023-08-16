@@ -12,9 +12,22 @@ const TodoItem = ({ item }) => {
       }}
     >
       <View style={{ width: "100%", flex: 1 }}>
-        <View style={{ alignItems: "center", flex: 1, flexDirection: "row" }}>
-          <Text>{item.timestamp}</Text>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "space-between",
+          }}
+        >
           <Text>{item.name}</Text>
+          <Text>{item.timestamp.toDateString()}</Text>
+          <Text>
+            {item.timestamp.toLocaleTimeString([], {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          </Text>
         </View>
       </View>
     </View>
