@@ -20,7 +20,7 @@ export default function App() {
     const newData = [...listData];
     newData.push({
       name: taskName,
-      timestamp: dateTime.toString(),
+      timestamp: dateTime,
       key: new Date().getTime().toString(),
     });
     setListData(newData);
@@ -111,27 +111,22 @@ export default function App() {
         <DateTimePicker
           testID="dateTimePicker"
           value={selectedDate}
-          // @ts-ignore
           mode={dateTimePickerMode}
           onChange={(event, selectedValue) => {
-            console.log("selectedValue", selectedValue);
             setShowDatePicker(false);
 
             if (selectedValue) {
               const currentSelectedDate = new Date(selectedValue);
-
               if (dateTimePickerMode === "date") {
                 setSelectedDate(currentSelectedDate);
                 setDateTimePickerMode("time");
                 setShowDatePicker(true);
               } else if (dateTimePickerMode === "time") {
                 const newDate = new Date(selectedDate);
-                console.log("newDate", newDate);
                 newDate.setHours(
                   currentSelectedDate.getHours(),
                   currentSelectedDate.getMinutes()
                 );
-                setSelectedDate(newDate);
                 addTask(newDate);
               }
             } else {
