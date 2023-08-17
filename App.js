@@ -1,16 +1,14 @@
 import React, { useState } from "react";
 
 import { View, Text } from "react-native";
-import { SwipeListView } from "react-native-swipe-list-view";
 import { useEffect } from "react";
-import TodoItem from "./components/TodoItem";
-import TodoItemButtons from "./components/TodoItemButtons";
+import TaskPanel from "./components/TaskPanel";
 import AddTodo from "./components/AddTodo";
 import { getStorage, updateStorage } from "./api/localStorage";
 
 export default function App() {
   const [listData, setListData] = useState([]);
-  console.log("listData: " + listData);
+  // console.log("listData: " + listData);
 
   const datePickerMode = (currentMode) => {
     setShowDatePicker(true);
@@ -26,16 +24,6 @@ export default function App() {
       isMounted = false;
     };
   }, []);
-
-  const closeRow = (rowMap, key) => {
-    if (rowMap[key]) {
-      rowMap[key].closeRow();
-    }
-  };
-
-  const onRowDidOpen = (rowKey) => {
-    console.log("This row opened", rowKey);
-  };
 
   return (
     <View style={{ height: "100%" }}>
@@ -63,26 +51,7 @@ export default function App() {
             flex: 1,
           }}
         >
-          <SwipeListView
-            data={listData}
-            renderItem={TodoItem}
-            renderHiddenItem={(data, rowMap) =>
-              TodoItemButtons(data, rowMap, (rowMap, deleteThis) => {
-                closeRow(rowMap, deleteThis);
-                const newData = [...listData];
-                const i = newData.findIndex(
-                  (rowItem) => rowItem.key === deleteThis
-                );
-                newData.splice(i, 1);
-                setListData(newData);
-              })
-            }
-            rightOpenValue={-130}
-            previewRowKey={"0"}
-            previewOpenValue={-40}
-            previewOpenDelay={3000}
-            onRowDidOpen={onRowDidOpen}
-          />
+          <TaskPanel listData={listData} setListData={setListData} />
         </View>
       </View>
     </View>
