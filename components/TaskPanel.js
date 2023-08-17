@@ -1,8 +1,8 @@
-import TodoItem from "./TodoItem";
-import TodoItemButtons from "./TodoItemButtons";
+import TaskItem from "./TaskItem";
+import DeleteButton from "./DeleteButton";
 import { SwipeListView } from "react-native-swipe-list-view";
 
-const TaskPanel = ({ listData, setListData }) => {
+const TaskPanel = ({ taskList, setTaskList }) => {
   const closeRow = (rowMap, key) => {
     if (rowMap[key]) {
       rowMap[key].closeRow();
@@ -15,15 +15,15 @@ const TaskPanel = ({ listData, setListData }) => {
 
   return (
     <SwipeListView
-      data={listData}
-      renderItem={TodoItem}
+      data={taskList}
+      renderItem={TaskItem}
       renderHiddenItem={(data, rowMap) =>
-        TodoItemButtons(data, rowMap, (rowMap, deleteThis) => {
+        DeleteButton(data, rowMap, (rowMap, deleteThis) => {
           closeRow(rowMap, deleteThis);
-          const newData = [...listData];
+          const newData = [...taskList];
           const i = newData.findIndex((rowItem) => rowItem.key === deleteThis);
           newData.splice(i, 1);
-          setListData(newData);
+          setTaskList(newData);
         })
       }
       rightOpenValue={-130}

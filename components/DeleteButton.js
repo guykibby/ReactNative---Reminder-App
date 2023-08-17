@@ -2,7 +2,7 @@ import { View, Pressable } from "react-native";
 import React from "react";
 import { MaterialIcons, Ionicons } from "@expo/vector-icons";
 
-const TodoItemButtons = (data, rowMap, deleteRow) => (
+const DeleteButton = (data, rowMap, deleteRow) => (
   <View style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}>
     <Pressable
       style={({ pressed }) => ({
@@ -16,4 +16,4 @@ const TodoItemButtons = (data, rowMap, deleteRow) => (
   </View>
 );
 
-export default TodoItemButtons;
+export default DeleteButton;

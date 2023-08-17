@@ -12,35 +12,30 @@ const styles = StyleSheet.create({
   text: { width: "100%", height: "100%" },
 });
 
-const AddTodo = ({ setListData }) => {
+const AddTask = ({ setTaskList }) => {
   const [taskName, setTaskName] = useState("");
+  const [taskDate, setTaskDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
-  const [dateTimePickerMode, setDateTimePickerMode] = useState("date");
-  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [datePickerMode, setDatePickerMode] = useState("date");
 
-  const addTask = (dateTime) => {
+  const handleSubmit = (dateTime) => {
     const newTask = {
       name: taskName,
       timestamp: dateTime,
       key: new Date().getTime().toString(),
     };
-    setListData((prevListData) => [...prevListData, newTask]);
-    setDateTimePickerMode("date");
+    setTaskList((prevListData) => [...prevListData, newTask]);
+    setDatePickerMode("date");
     setTaskName("");
   };
 
-  const newAdd = () => {
-    setSelectedDate(new Date());
+  const openDatePicker = () => {
+    setTaskDate(new Date());
     setShowDatePicker(true);
   };
 
   const newAddName = (e) => {
     setTaskName(e);
-  };
-
-  const datePickerMode = (currentMode) => {
-    setShowDatePicker(true);
-    setDateTimePickerMode(currentMode);
   };
 
   return (
@@ -53,31 +48,31 @@ const AddTodo = ({ setListData }) => {
           onChangeText={(e) => newAddName(e)}
         ></TextInput>
       </View>
-      <Button title="Add" onPress={newAdd}></Button>
+      <Button title="Add" onPress={openDatePicker}></Button>
       {showDatePicker ? (
         <DateTimePicker
           testID="dateTimePicker"
-          value={selectedDate}
-          mode={dateTimePickerMode}
+          value={taskDate}
+          mode={datePickerMode}
           onChange={(event, selectedValue) => {
             setShowDatePicker(false);
 
             if (selectedValue) {
-              const currentSelectedDate = new Date(selectedValue);
-              if (dateTimePickerMode === "date") {
-                setSelectedDate(currentSelectedDate);
-                setDateTimePickerMode("time");
+              const currenttaskDate = new Date(selectedValue);
+              if (datePickerMode === "date") {
+                setTaskDate(currenttaskDate);
+                setDatePickerMode("time");
                 setShowDatePicker(true);
-              } else if (dateTimePickerMode === "time") {
-                const newDate = new Date(selectedDate);
+              } else if (datePickerMode === "time") {
+                const newDate = new Date(taskDate);
                 newDate.setHours(
-                  currentSelectedDate.getHours(),
-                  currentSelectedDate.getMinutes()
+                  currenttaskDate.getHours(),
+                  currenttaskDate.getMinutes()
                 );
-                addTask(newDate);
+                handleSubmit(newDate);
               }
             } else {
-              setDateTimePickerMode("date");
+              setDatePickerMode("date");
             }
           }}
         />
@@ -86,4 +81,4 @@ const AddTodo = ({ setListData }) => {
   );
 };
 
-export default AddTodo;
+export default AddTask;
