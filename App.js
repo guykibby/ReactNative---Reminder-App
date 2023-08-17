@@ -3,12 +3,12 @@ import React, { useState } from "react";
 import { View, Text } from "react-native";
 import { useEffect } from "react";
 import TaskPanel from "./components/TaskPanel";
-import AddTodo from "./components/AddTodo";
+import AddTask from "./components/AddTask";
 import { getStorage, updateStorage } from "./api/localStorage";
 
 export default function App() {
-  const [listData, setListData] = useState([]);
-  // console.log("listData: " + listData);
+  const [taskList, setTaskList] = useState([]);
+  // console.log("taskList: " + taskList);
 
   let isMounted = false;
 
@@ -39,14 +39,14 @@ export default function App() {
         >
           Reminders
         </Text>
-        <AddTodo setListData={setListData} />
+        <AddTask setTaskList={setTaskList} />
         <View
           style={{
             backgroundColor: "white",
             flex: 1,
           }}
         >
-          <TaskPanel listData={listData} setListData={setListData} />
+          <TaskPanel taskList={taskList} setTaskList={setTaskList} />
         </View>
       </View>
     </View>

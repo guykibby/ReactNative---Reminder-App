@@ -1,5 +1,21 @@
 # Learning Outcomes Level 6
 
+- rename files w task instead of todo
+- put useeffect w usestate in import app.js 
+- too many views in app.js, only required views to be left
+- styles into stylesheets
+
+
+- deleting redundant functions
+- delete newAddName function, call set setTaskName directly where newAddName is called.
+- get rid of functions closeRow, onrowdidopen and datepickermode and useEffect as not required
+
+- move some setstates into handleSubmit from picker?
+
+- put setDatePickerMode("date"); into openDatePicker from handleSubmit
+
+creat new functions with cleaner code: handleDateSelection, handle Delete 
+
 | Learning Outcomes | Description | Credit |
 | --- | --- | --- |
 | LO3 | Demonstrate and apply User Experience (UX) and Design principles and practices to produce user-centric interfaces | 1 Credit<br />(3.3%) |
