@@ -10,11 +10,6 @@ export default function App() {
   const [listData, setListData] = useState([]);
   // console.log("listData: " + listData);
 
-  const datePickerMode = (currentMode) => {
-    setShowDatePicker(true);
-    setDateTimePickerMode(currentMode);
-  };
-
   let isMounted = false;
 
   useEffect(() => {
