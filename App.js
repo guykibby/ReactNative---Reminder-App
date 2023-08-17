@@ -92,7 +92,9 @@ export default function App() {
               TodoItemButtons(data, rowMap, (rowMap, deleteThis) => {
                 closeRow(rowMap, deleteThis);
                 const newData = [...listData];
-                const i = newData.findIndex((rowItem) => rowItem.key === 0);
+                const i = newData.findIndex(
+                  (rowItem) => rowItem.key === deleteThis
+                );
                 newData.splice(i, 1);
                 setListData(newData);
               })
