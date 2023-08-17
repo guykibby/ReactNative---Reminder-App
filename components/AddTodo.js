@@ -38,6 +38,11 @@ const AddTodo = ({ setListData }) => {
     setTaskName(e);
   };
 
+  const datePickerMode = (currentMode) => {
+    setShowDatePicker(true);
+    setDateTimePickerMode(currentMode);
+  };
+
   return (
     <View style={styles.container}>
       <View style={styles.newContainer}>
