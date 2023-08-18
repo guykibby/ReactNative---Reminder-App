@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { TextInput, View, Button, StyleSheet } from "react-native";
+import { setNotificationFor } from "../api/notification";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 const AddTask = ({ setTaskList }) => {
@@ -8,7 +9,7 @@ const AddTask = ({ setTaskList }) => {
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [datePickerMode, setDatePickerMode] = useState("date");
 
-  const handleSubmit = (dateTime) => {
+  const handleSubmit = async (dateTime) => {
     const newTask = {
       name: taskName,
       timestamp: dateTime,
@@ -16,6 +17,7 @@ const AddTask = ({ setTaskList }) => {
     };
     setTaskList((prevListData) => [...prevListData, newTask]);
     setTaskName("");
+    await setNotificationFor(newTask);
   };
 
   const openDatePicker = () => {
