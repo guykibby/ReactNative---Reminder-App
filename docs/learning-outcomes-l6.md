@@ -13,6 +13,7 @@
 - move some setstates into handleSubmit from picker?
 
 - put setDatePickerMode("date"); into openDatePicker from handleSubmit
+- move 
 
 creat new functions with cleaner code: handleDateSelection, handle Delete 
 

@@ -1,4 +1,3 @@
-import * as Device from "expo-device";
 import * as Notifications from "expo-notifications";
 
 Notifications.setNotificationHandler({
@@ -10,50 +9,40 @@ Notifications.setNotificationHandler({
 });
 
 export async function registerForNotifications() {
-  let token;
   try {
-    if (Platform.OS === "android") {
-      await Notifications.setNotificationChannelAsync("default", {
-        name: "default",
-        importance: Notifications.AndroidImportance.MAX,
-        vibrationPattern: [0, 250, 250, 250],
-        lightColor: "#FF231F7C",
-      });
+    const { status: existingStatus } =
+      await Notifications.getPermissionsAsync();
+    let finalStatus = existingStatus;
+
+    if (existingStatus !== "granted") {
+      const { status } = await Notifications.requestPermissionsAsync();
+      finalStatus = status;
     }
 
-    if (Device.isDevice) {
-      const { status: existingStatus } =
-        await Notifications.getPermissionsAsync();
-      let finalStatus = existingStatus;
-      if (existingStatus !== "granted") {
-        const { status } = await Notifications.requestPermissionsAsync();
-        finalStatus = status;
-      }
-      if (finalStatus !== "granted") {
-        alert("Failed to get push token for push notification!");
-        return;
-      }
-      token = (await Notifications.getExpoPushTokenAsync()).data;
-      console.log("TOKEN; " + token);
-    } else {
-      alert("Must use physical device for Push Notifications");
+    if (finalStatus !== "granted") {
+      alert("Failed to get permission for push notification!");
+      return;
     }
   } catch (error) {
-    console.error("An error occurred while scheduling the notification", error);
+    alert(
+      "An error occurred while getting the permission for you to recieve notifications!"
+    );
   }
-  return token;
 }
 
-export const setNotificationFor = async ({ timestamp, name }) => {
+export const setNotificationFor = async ({ timestamp, name, key }) => {
   try {
+    timestamp.setSeconds(timestamp.getSeconds() + 10);
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "Task Due!!!",
-        body: name,
+        body: { name, key },
       },
       trigger: timestamp,
     });
   } catch (error) {
-    console.error("An error occurred while scheduling the notification", error);
+    alert(
+      "An error occurred while scheduling the notification for this task! sorry :)"
+    );
   }
 };
