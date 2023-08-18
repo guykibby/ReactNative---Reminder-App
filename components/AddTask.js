@@ -15,8 +15,6 @@ const AddTask = ({ setTaskList }) => {
       key: new Date().getTime().toString(),
     };
     setTaskList((prevListData) => [...prevListData, newTask]);
-
-    setDatePickerMode("date");
     setTaskName("");
   };
 
@@ -56,6 +54,7 @@ const AddTask = ({ setTaskList }) => {
                   currenttaskDate.getMinutes()
                 );
                 handleSubmit(newDate);
+                setDatePickerMode("date");
               }
             }
           }}
