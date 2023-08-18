@@ -1,37 +1,36 @@
-import { View, Text } from "react-native";
-import React from "react";
+import { View, Text, StyleSheet } from "react-native";
 
-const TodoItem = ({ item }) => {
+const TaskItem = ({ item }) => {
   return (
-    <View
-      style={{
-        backgroundColor: "white",
-        height: 50,
-        flex: 1,
-        justifyContent: "center",
-      }}
-    >
-      <View style={{ width: "100%", flex: 1 }}>
-        <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            alignItems: "center",
-            justifyContent: "space-between",
-          }}
-        >
-          <Text>{item.name}</Text>
-          <Text>{item.timestamp.toDateString()}</Text>
-          <Text>
-            {item.timestamp.toLocaleTimeString([], {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </Text>
-        </View>
+    <View style={styles.container}>
+      <View style={styles.taskItem}>
+        <Text>{item.name}</Text>
+        <Text>{item.timestamp.toDateString()}</Text>
+        <Text>
+          {item.timestamp.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+          })}
+        </Text>
       </View>
     </View>
   );
 };
 
-export default TodoItem;
+export default TaskItem;
+
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: "white",
+    height: 50,
+    width: "100%",
+    flex: 1,
+    justifyContent: "center",
+  },
+  taskItem: {
+    flex: 1,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+});
