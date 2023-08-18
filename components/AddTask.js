@@ -1,16 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { TextInput, View, Button, StyleSheet } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
-
-const styles = StyleSheet.create({
-  container: {
-    width: "100%",
-    height: 40,
-    flexDirection: "row",
-  },
-  newContainer: { flexGrow: 1 },
-  text: { width: "100%", height: "100%" },
-});
 
 const AddTask = ({ setTaskList }) => {
   const [taskName, setTaskName] = useState("");
@@ -25,6 +15,7 @@ const AddTask = ({ setTaskList }) => {
       key: new Date().getTime().toString(),
     };
     setTaskList((prevListData) => [...prevListData, newTask]);
+
     setDatePickerMode("date");
     setTaskName("");
   };
@@ -34,18 +25,14 @@ const AddTask = ({ setTaskList }) => {
     setShowDatePicker(true);
   };
 
-  const newAddName = (e) => {
-    setTaskName(e);
-  };
-
   return (
     <View style={styles.container}>
-      <View style={styles.newContainer}>
+      <View style={styles.input}>
         <TextInput
           placeholder="Enter task name..."
           style={styles.text}
           value={taskName}
-          onChangeText={(e) => newAddName(e)}
+          onChangeText={(e) => setTaskName(e)}
         ></TextInput>
       </View>
       <Button title="Add" onPress={openDatePicker}></Button>
@@ -56,7 +43,6 @@ const AddTask = ({ setTaskList }) => {
           mode={datePickerMode}
           onChange={(event, selectedValue) => {
             setShowDatePicker(false);
-
             if (selectedValue) {
               const currenttaskDate = new Date(selectedValue);
               if (datePickerMode === "date") {
@@ -71,8 +57,6 @@ const AddTask = ({ setTaskList }) => {
                 );
                 handleSubmit(newDate);
               }
-            } else {
-              setDatePickerMode("date");
             }
           }}
         />
@@ -82,3 +66,13 @@ const AddTask = ({ setTaskList }) => {
 };
 
 export default AddTask;
+
+const styles = StyleSheet.create({
+  container: {
+    width: "100%",
+    height: 40,
+    flexDirection: "row",
+  },
+  input: { flexGrow: 1 },
+  text: { width: "100%", height: "100%" },
+});

@@ -1,14 +1,13 @@
-import { View, Pressable } from "react-native";
-import React from "react";
-import { MaterialIcons, Ionicons } from "@expo/vector-icons";
+import { View, Pressable, StyleSheet } from "react-native";
+import { MaterialIcons } from "@expo/vector-icons";
 
 const DeleteButton = (index, handleDelete) => (
-  <View style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}>
+  <View style={styles.container}>
     <Pressable
-      style={({ pressed }) => ({
-        backgroundColor: pressed ? "blue" : "aqua",
-        width: 50,
-      })}
+      style={({ pressed }) => [
+        styles.button,
+        pressed ? styles.buttonPressed : styles.buttonNormal,
+      ]}
       onPress={() => handleDelete(index)}
     >
       <MaterialIcons name="delete" />
@@ -17,3 +16,16 @@ const DeleteButton = (index, handleDelete) => (
 );
 
 export default DeleteButton;
+
+const styles = StyleSheet.create({
+  container: { flex: 1, flexDirection: "row", justifyContent: "flex-end" },
+  button: {
+    width: 50,
+  },
+  buttonNormal: {
+    backgroundColor: "aqua",
+  },
+  buttonPressed: {
+    backgroundColor: "blue",
+  },
+});
