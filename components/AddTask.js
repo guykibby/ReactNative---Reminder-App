@@ -1,28 +1,34 @@
 import { useState } from "react";
 import { TextInput, View, Button, StyleSheet } from "react-native";
-import { setNotificationFor } from "../api/notification";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
-const AddTask = ({ setTaskList }) => {
+const AddTask = ({ handleAdd }) => {
   const [taskName, setTaskName] = useState("");
   const [taskDate, setTaskDate] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [datePickerMode, setDatePickerMode] = useState("date");
 
-  const handleSubmit = async (dateTime) => {
-    const newTask = {
-      name: taskName,
-      timestamp: dateTime,
-      key: new Date().getTime().toString(),
-    };
-    setTaskList((prevListData) => [...prevListData, newTask]);
-    setTaskName("");
-    await setNotificationFor(newTask);
-  };
-
   const openDatePicker = () => {
     setTaskDate(new Date());
+    setDatePickerMode("date");
     setShowDatePicker(true);
+  };
+
+  const processDateTimeSelection = (event, selectedValue) => {
+    const dateTime = new Date(selectedValue);
+    if (datePickerMode === "date") {
+      setTaskDate(dateTime);
+      setDatePickerMode("time");
+    } else if (datePickerMode === "time") {
+      taskDate.setHours(dateTime.getHours(), dateTime.getMinutes());
+      const newTask = {
+        name: taskName,
+        timestamp: taskDate,
+      };
+      setShowDatePicker(false);
+      setTaskName("");
+      handleAdd(newTask);
+    }
   };
 
   return (
@@ -41,25 +47,7 @@ const AddTask = ({ setTaskList }) => {
           testID="dateTimePicker"
           value={taskDate}
           mode={datePickerMode}
-          onChange={(event, selectedValue) => {
-            setShowDatePicker(false);
-            if (selectedValue) {
-              const currenttaskDate = new Date(selectedValue);
-              if (datePickerMode === "date") {
-                setTaskDate(currenttaskDate);
-                setDatePickerMode("time");
-                setShowDatePicker(true);
-              } else if (datePickerMode === "time") {
-                const newDate = new Date(taskDate);
-                newDate.setHours(
-                  currenttaskDate.getHours(),
-                  currenttaskDate.getMinutes()
-                );
-                handleSubmit(newDate);
-                setDatePickerMode("date");
-              }
-            }
-          }}
+          onChange={processDateTimeSelection}
         />
       ) : null}
     </View>
