@@ -30,13 +30,12 @@ export async function registerForNotifications() {
   }
 }
 
-export const setNotificationFor = async ({ timestamp, name, key }) => {
+export const setNotificationFor = async ({ timestamp, name }) => {
   try {
-    timestamp.setSeconds(timestamp.getSeconds() + 10);
     await Notifications.scheduleNotificationAsync({
       content: {
         title: "Task Due!!!",
-        body: { name, key },
+        body: { name },
       },
       trigger: timestamp,
     });

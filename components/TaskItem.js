@@ -1,13 +1,14 @@
 import { View, Text, StyleSheet } from "react-native";
 
 const TaskItem = ({ item }) => {
+  let itemDate = new Date(item.timestamp);
   return (
     <View style={styles.container}>
       <View style={styles.taskItem}>
         <Text>{item.name}</Text>
-        <Text>{item.timestamp.toDateString()}</Text>
+        <Text>{itemDate.toDateString()}</Text>
         <Text>
-          {item.timestamp.toLocaleTimeString([], {
+          {itemDate.toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
           })}
