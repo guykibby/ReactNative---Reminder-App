@@ -8,11 +8,9 @@ const LoginScreen = ({ navigation }) => {
     if (result.success) {
       navigation.navigate("HomePage");
     } else if (result.error === "not_enrolled") {
-      Alert.alert(
-        "Please enable device security! For your privacy we rquire lock screen security to use this app."
-      );
+      Alert.alert("Please enable lock screen security on device!");
     } else {
-      Alert.alert("Authentication failed.");
+      Alert.alert("Authentication failed. Please go away!");
     }
   };
 
