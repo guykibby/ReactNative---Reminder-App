@@ -1,24 +1,38 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import TaskItem from "./TaskItem";
 import DeleteButton from "./DeleteButton";
 import { SwipeListView } from "react-native-swipe-list-view";
 import { setNotificationFor } from "../api/notification";
+import { getStorage, updateStorage } from "../api/localStorage";
 
 import AddTask from "./AddTask";
 
 const HomePage = () => {
   const [taskList, setTaskList] = useState([]);
 
+  useEffect(() => {
+    const fetchTasks = async () => {
+      const savedTasks = await getStorage();
+      console.log("savedTasks", savedTasks);
+      setTaskList(savedTasks);
+    };
+
+    fetchTasks();
+  }, []);
+
   const handleAdd = async (newTask) => {
-    setTaskList((prevListData) => [...prevListData, newTask]);
+    const newTaskList = [...taskList, newTask];
+    setTaskList(newTaskList);
+    await updateStorage(newTaskList);
     await setNotificationFor(newTask);
   };
 
-  const handleDelete = (index) => {
+  const handleDelete = async (index) => {
     const newData = [...taskList];
     newData.splice(index, 1);
     setTaskList(newData);
+    await updateStorage(newData);
   };
 
   return (
