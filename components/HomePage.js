@@ -7,7 +7,7 @@ import { setNotificationFor } from "../api/notification";
 
 import AddTask from "./AddTask";
 
-const TaskPanel = () => {
+const HomePage = () => {
   const [taskList, setTaskList] = useState([]);
 
   const handleAdd = async (newTask) => {
@@ -37,7 +37,7 @@ const TaskPanel = () => {
   );
 };
 
-export default TaskPanel;
+export default HomePage;
 
 const styles = StyleSheet.create({
   container: {
