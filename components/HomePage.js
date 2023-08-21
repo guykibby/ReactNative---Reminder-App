@@ -3,7 +3,10 @@ import { View, Text, StyleSheet } from "react-native";
 import TaskItem from "./TaskItem";
 import DeleteButton from "./DeleteButton";
 import { SwipeListView } from "react-native-swipe-list-view";
-import { setNotificationFor } from "../api/notification";
+import {
+  registerForNotifications,
+  setNotificationFor,
+} from "../api/notification";
 import { getStorage, updateStorage } from "../api/localStorage";
 
 import AddTask from "./AddTask";
@@ -14,10 +17,9 @@ const HomePage = () => {
   useEffect(() => {
     const fetchTasks = async () => {
       const savedTasks = await getStorage();
-      console.log("savedTasks", savedTasks);
       setTaskList(savedTasks);
     };
-
+    registerForNotifications();
     fetchTasks();
   }, []);
 
