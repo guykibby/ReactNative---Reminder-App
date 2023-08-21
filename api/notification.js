@@ -34,8 +34,7 @@ export const setNotificationFor = async ({ timestamp, name }) => {
   try {
     await Notifications.scheduleNotificationAsync({
       content: {
-        title: "Task Due!!!",
-        body: { name },
+        title: name,
       },
       trigger: timestamp,
     });
