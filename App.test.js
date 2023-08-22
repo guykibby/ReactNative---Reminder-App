@@ -8,13 +8,8 @@ import {
 import App from "./App";
 import { Alert } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
-// Mock a successful authentication:
-// LocalAuthentication.authenticateAsync.mockResolvedValue({ success: true });
 
-// Or, mock a failed authentication:
-
-jest.mock("expo-local-authentication");
-jest.mock("expo-notifications");
+// jest.mock("expo-local-authentication");
 jest.mock("react-native", () => {
   const rn = jest.requireActual("react-native");
   rn.Alert.alert = jest.fn();
@@ -24,12 +19,13 @@ jest.mock("react-native", () => {
 describe("LoginPage", () => {
   afterEach(() => {
     cleanup();
-    jest.resetAllMocks();
+    // jest.resetAllMocks();
+    jest.clearAllMocks();
   });
 
-  it("renders Alert instead of Hompage if user fails authentication", async () => {
+  it("renders Alert instead of Homepage if user fails authentication", async () => {
     await waitFor(async () => {
-      const app = render(<App />);
+      render(<App />);
     });
     LocalAuthentication.authenticateAsync.mockResolvedValue({ success: false });
     const button = screen.getByText("LOGIN");
@@ -44,9 +40,9 @@ describe("LoginPage", () => {
     );
   });
 
-  it("renders Alert instead of Hompage if user has no device security", async () => {
+  it("renders Alert instead of Homepage if user has no device security", async () => {
     await waitFor(async () => {
-      const app = render(<App />);
+      render(<App />);
     });
     LocalAuthentication.authenticateAsync.mockResolvedValue({
       error: "not_enrolled",
@@ -64,7 +60,7 @@ describe("LoginPage", () => {
   });
   it("renders the HomePage if the User passes authentication", async () => {
     await waitFor(async () => {
-      const app = render(<App />);
+      render(<App />);
     });
     LocalAuthentication.authenticateAsync.mockResolvedValue({ success: true });
     const button = screen.getByText("LOGIN");

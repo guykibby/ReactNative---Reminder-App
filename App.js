@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import LoginPage from "./components/LoginPage";
@@ -13,6 +12,7 @@ export default function App() {
         <Stack.Screen
           name="LoginPage"
           component={LoginPage}
+          // component={HomePage}
           options={{ headerShown: false }}
         />
         <Stack.Screen

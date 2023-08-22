@@ -25,13 +25,11 @@ export async function registerForNotifications() {
       return;
     }
   } catch (error) {
-    Alert.alert(
-      "An error occurred while getting the permission for you to recieve notifications!"
-    );
+    Alert.alert("Unable to send notifications! Sorry.");
   }
 }
 
-export const setNotificationFor = async ({ timestamp, name }) => {
+export const setNotificationFor = async ({ timestamp, name, key }) => {
   try {
     await Notifications.scheduleNotificationAsync({
       content: {
@@ -39,12 +37,7 @@ export const setNotificationFor = async ({ timestamp, name }) => {
       },
       trigger: timestamp,
     });
-    Alert.alert(
-      "An error occurred while scheduling the notification for this task! sorry :)"
-    );
   } catch (error) {
-    Alert.alert(
-      "An error occurred while scheduling the notification for this task! sorry :)"
-    );
+    Alert.alert("Unable to schedule a notification for this task! Sorry.");
   }
 };
