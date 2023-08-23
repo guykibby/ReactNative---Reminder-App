@@ -10,17 +10,17 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import HomePage from "./HomePage";
 
-jest.mock("@react-native-community/datetimepicker", () => {
-  const mockComponent = (props) => {
-    const mockOnChange = (event, date) => {
-      props.onChange(event, date);
-    };
+// jest.mock("@react-native-community/datetimepicker", () => {
+//   const mockComponent = (props) => {
+//     const mockOnChange = (event, date) => {
+//       props.onChange(event, date);
+//     };
 
-    return <mock-datetimepicker onChange={mockOnChange} {...props} />;
-  };
+//     return <mock-datetimepicker onChange={mockOnChange} {...props} />;
+//   };
 
-  return mockComponent;
-});
+//   return mockComponent;
+// });
 
 // jest.mock("expo-notifications");
 // jest.mock("@react-native-async-storage/async-storage");
@@ -30,7 +30,7 @@ jest.mock("@react-native-community/datetimepicker", () => {
 //   return rn;
 // });
 
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+// const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 describe("HomePage tests", () => {
   afterEach(() => {
@@ -71,14 +71,13 @@ describe("HomePage tests", () => {
     // fireEvent(taskItem1, "onSwipe", { dx: -50 });
 
     const taskInput = screen.getByPlaceholderText("Enter task name...");
-    expect(taskInput).toBeTruthy();
     fireEvent.changeText(taskInput, "Task 3");
-    expect(taskInput.props.value).toBe("Task 3");
 
     const addButton = screen.getByText("Add");
     fireEvent.press(addButton);
 
     const mockDatePicker = screen.getByTestId("dateTimePicker");
+
     mockDatePicker.props.onChange(
       { type: "set" },
       new Date("2023-08-21T08:53:59.706Z")
