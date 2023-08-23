@@ -9,8 +9,8 @@ const TaskItem = ({ item, index }) => {
   return (
     <View style={styles.container}>
       <View style={styles.taskItem}>
-        <Text testID={`taskItem${index}`}>{item.name}</Text>
-        <Text>{formattedDate}</Text>
+        <Text testID={`task${index + 1}Name`}>{item.name}</Text>
+        <Text testID={`task${index + 1}Date`}>{formattedDate}</Text>
       </View>
     </View>
   );

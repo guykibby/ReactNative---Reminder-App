@@ -46,8 +46,8 @@ describe("HomePage tests", () => {
 
     expect(AsyncStorage.getItem.mock.calls[0]).toEqual(["reminder-list"]);
 
-    // const taskItem1 = screen.getByTestId("taskItem0");
-    // expect(taskItem1.props.children).toBe("Task 1");
+    const task1Name = screen.getByTestId("task1Name");
+    expect(task1Name.props.children).toBe("Task 1");
   });
   it("deletes a task from local storage when the delete button is pushed", async () => {
     await waitFor(async () => {
@@ -63,6 +63,10 @@ describe("HomePage tests", () => {
       "reminder-list",
       '[{"name":"Task 2","timestamp":"2023-08-21T08:53:59.706Z"}]',
     ]);
+    const task1Name = screen.getByTestId("task1Name");
+    expect(task1Name.props.children).toBe("Task 2");
+    // const task1Name = screen.queryByTestId("task1Name");
+    // expect(task1Name).toBeNull();
   });
   it("adds a task to local storage when user adds task", async () => {
     await waitFor(async () => {
@@ -91,6 +95,31 @@ describe("HomePage tests", () => {
       '[{"name":"Task 1","timestamp":"2023-08-21T08:46:48.789Z"},{"name":"Task 2","timestamp":"2023-08-21T08:53:59.706Z"},{"name":"Task 3","timestamp":"2023-08-21T08:53:59.706Z"}]',
     ]);
   });
+  it("adds the date and time selected by the user to a new task", async () => {
+    await waitFor(async () => {
+      render(<HomePage />);
+    });
+    // fireEvent(taskItem1, "onSwipe", { dx: -50 });
+
+    const taskInput = screen.getByPlaceholderText("Enter task name...");
+    fireEvent.changeText(taskInput, "Task 3");
+
+    const addButton = screen.getByText("Add");
+    fireEvent.press(addButton);
+
+    const mockDatePicker = screen.getByTestId("dateTimePicker");
+
+    mockDatePicker.props.onChange(
+      { type: "set" },
+      new Date("2023-08-21T08:53:59.706Z")
+    );
+    mockDatePicker.props.onChange(
+      { type: "set" },
+      new Date("2023-08-21T08:53:59.706Z")
+    );
+    const taskItem3 = screen.getByTestId("task3Date");
+    expect(taskItem3.props.children).toBe("21 Aug 2023 18:53");
+  });
   //   it("adds a task to local storage when user adds task", async () => {
   //     let debugFunction;
 
@@ -99,23 +128,6 @@ describe("HomePage tests", () => {
   //       debugFunction = debug;
   //     });
 
-  //     // fireEvent(taskItem1, "onSwipe", { dx: -50 });
-
-  //     const taskInput = screen.getByPlaceholderText("Enter task name...");
-  //     expect(taskInput).toBeTruthy();
-  //     fireEvent.changeText(taskInput, "Task 3");
-  //     expect(taskInput.props.value).toBe("Task 3");
-
-  //     const addButton = screen.getByText("Add");
-  //     fireEvent.press(addButton);
-
   //     debugFunction();
-
-  //     // fireEvent.press(buttonDelete1);
-
-  //     // expect(AsyncStorage.setItem.mock.calls[0]).toEqual([
-  //     //   "reminder-list",
-  //     //   '[{"name":"Task 2","timestamp":"2023-08-21T08:53:59.706Z"}]',
-  //     // ]);
   //   });
 });
