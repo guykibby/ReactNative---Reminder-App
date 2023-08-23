@@ -10,28 +10,6 @@ import {
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import HomePage from "./HomePage";
 
-// jest.mock("@react-native-community/datetimepicker", () => {
-//   const mockComponent = (props) => {
-//     const mockOnChange = (event, date) => {
-//       props.onChange(event, date);
-//     };
-
-//     return <mock-datetimepicker onChange={mockOnChange} {...props} />;
-//   };
-
-//   return mockComponent;
-// });
-
-// jest.mock("expo-notifications");
-// jest.mock("@react-native-async-storage/async-storage");
-// jest.mock("react-native", () => {
-//   const rn = jest.requireActual("react-native");
-//   rn.Alert.alert = jest.fn();
-//   return rn;
-// });
-
-// const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
-
 describe("HomePage tests", () => {
   afterEach(() => {
     cleanup();
