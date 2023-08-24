@@ -4,8 +4,8 @@ import { format } from "date-fns";
 const TaskItem = ({ item, index }) => {
   let itemDate = new Date(item.timestamp);
   // const formattedDate = format(itemDate, "d MMMM, yyyy h:mma");
-  const formattedDate = format(itemDate, "dd MMM yyy HH:mm");
-  // const formattedDate = format(itemDate, "MMM dd yyyy HH:mm");
+  // const formattedDate = format(itemDate, "dd MMM yyy h:mma");
+  const formattedDate = format(itemDate, "dd/MM/yyyy h:mma");
   return (
     <View style={styles.container}>
       <View style={styles.taskItem}>
