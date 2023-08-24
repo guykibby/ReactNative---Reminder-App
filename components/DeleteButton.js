@@ -9,6 +9,7 @@ const DeleteButton = (index, handleDelete) => (
         pressed ? styles.buttonPressed : styles.buttonNormal,
       ]}
       onPress={() => handleDelete(index)}
+      testID={`deleteButton${index}`}
     >
       <MaterialIcons name="delete" />
     </Pressable>

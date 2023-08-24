@@ -1,3 +1,4 @@
+import { Alert } from "react-native";
 import * as Notifications from "expo-notifications";
 
 Notifications.setNotificationHandler({
@@ -20,17 +21,15 @@ export async function registerForNotifications() {
     }
 
     if (finalStatus !== "granted") {
-      alert("Failed to get permission for push notification!");
+      Alert.alert("Failed to get permission for push notification!");
       return;
     }
   } catch (error) {
-    alert(
-      "An error occurred while getting the permission for you to recieve notifications!"
-    );
+    Alert.alert("Unable to send notifications! Sorry.");
   }
 }
 
-export const setNotificationFor = async ({ timestamp, name }) => {
+export const setNotificationFor = async ({ timestamp, name, key }) => {
   try {
     await Notifications.scheduleNotificationAsync({
       content: {
@@ -39,8 +38,6 @@ export const setNotificationFor = async ({ timestamp, name }) => {
       trigger: timestamp,
     });
   } catch (error) {
-    alert(
-      "An error occurred while scheduling the notification for this task! sorry :)"
-    );
+    Alert.alert("Unable to schedule a notification for this task! Sorry.");
   }
 };

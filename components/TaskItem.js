@@ -1,18 +1,16 @@
 import { View, Text, StyleSheet } from "react-native";
+import { format } from "date-fns";
 
-const TaskItem = ({ item }) => {
+const TaskItem = ({ item, index }) => {
   let itemDate = new Date(item.timestamp);
+  // const formattedDate = format(itemDate, "d MMMM, yyyy h:mma");
+  // const formattedDate = format(itemDate, "dd MMM yyy h:mma");
+  const formattedDate = format(itemDate, "dd/MM/yyyy h:mma");
   return (
     <View style={styles.container}>
       <View style={styles.taskItem}>
-        <Text>{item.name}</Text>
-        <Text>{itemDate.toDateString()}</Text>
-        <Text>
-          {itemDate.toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
-        </Text>
+        <Text testID={`task${index + 1}Name`}>{item.name}</Text>
+        <Text testID={`task${index + 1}Date`}>{formattedDate}</Text>
       </View>
     </View>
   );

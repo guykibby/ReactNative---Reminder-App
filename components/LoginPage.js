@@ -1,7 +1,7 @@
 import { View, Text, Alert, Pressable } from "react-native";
 import * as LocalAuthentication from "expo-local-authentication";
 
-const LoginScreen = ({ navigation }) => {
+const LoginPage = ({ navigation }) => {
   const handlePress = async () => {
     const result = await LocalAuthentication.authenticateAsync();
     if (result.success) {
@@ -22,4 +22,4 @@ const LoginScreen = ({ navigation }) => {
   );
 };
 
-export default LoginScreen;
+export default LoginPage;
