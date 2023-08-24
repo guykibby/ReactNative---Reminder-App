@@ -21,7 +21,7 @@ export async function registerForNotifications() {
     }
 
     if (finalStatus !== "granted") {
-      Alert.alert("Failed to get permission for push notification!");
+      Alert.alert("Failed to get permission to schedule notifications!");
       return;
     }
   } catch (error) {
