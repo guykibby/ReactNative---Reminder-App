@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TextInput, View, Button, StyleSheet } from "react-native";
+import { Text, TextInput, View, Pressable, StyleSheet } from "react-native";
 import DateTimePicker from "@react-native-community/datetimepicker";
 
 const AddTask = ({ handleAdd }) => {
@@ -16,9 +16,11 @@ const AddTask = ({ handleAdd }) => {
 
   const processDateTimeSelection = (event, selectedValue) => {
     const dateTime = new Date(selectedValue);
+    setShowDatePicker(false);
     if (datePickerMode === "date") {
       setDatePickerMode("time");
       setTaskDate(dateTime);
+      setShowDatePicker(true);
     } else if (datePickerMode === "time") {
       taskDate.setHours(dateTime.getHours(), dateTime.getMinutes());
       const newTask = {
@@ -35,13 +37,15 @@ const AddTask = ({ handleAdd }) => {
     <View style={styles.container}>
       <View style={styles.input}>
         <TextInput
-          placeholder="Enter task name..."
-          style={styles.text}
+          placeholder="Add Task"
+          style={styles.inputText}
           value={taskName}
-          onChangeText={(e) => setTaskName(e)}
+          onChangeText={(e) => e.length < 55 && setTaskName(e)}
         ></TextInput>
       </View>
-      <Button title="Add" onPress={openDatePicker}></Button>
+      <Pressable style={styles.addButton} onPress={openDatePicker}>
+        <Text style={styles.buttonText}>ADD</Text>
+      </Pressable>
       {showDatePicker ? (
         <DateTimePicker
           testID="dateTimePicker"
@@ -58,10 +62,36 @@ export default AddTask;
 
 const styles = StyleSheet.create({
   container: {
-    width: "100%",
-    height: 40,
+    width: "90%",
+    flex: 1.2,
     flexDirection: "row",
+    alignItems: "center",
+    gap: 14,
   },
-  input: { flexGrow: 1 },
-  text: { width: "100%", height: "100%" },
+  input: {
+    flex: 5,
+    height: "65%",
+    paddingHorizontal: "4%",
+    justifyContent: "center",
+    backgroundColor: "white",
+    borderRadius: 5,
+  },
+  inputText: {
+    fontSize: 22,
+    fontWeight: "bold",
+  },
+  addButton: {
+    flex: 3,
+    height: "65%",
+    backgroundColor: "#03CAA4",
+    color: "white",
+    borderRadius: 5,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    fontSize: 25,
+    fontWeight: "bold",
+    color: "white",
+  },
 });

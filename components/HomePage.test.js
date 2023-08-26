@@ -5,7 +5,6 @@ import {
   cleanup,
   waitFor,
 } from "@testing-library/react-native";
-// import { Alert } from "react-native";
 import * as Notifications from "expo-notifications";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import HomePage from "./HomePage";
@@ -13,7 +12,6 @@ import HomePage from "./HomePage";
 describe("The HomePage", () => {
   afterEach(() => {
     cleanup();
-    // jest.restoreAllMocks();
     jest.clearAllMocks();
   });
 
@@ -58,10 +56,10 @@ describe("The HomePage", () => {
       render(<HomePage />);
     });
 
-    const taskInput = screen.getByPlaceholderText("Enter task name...");
+    const taskInput = screen.getByPlaceholderText("Add Task");
     fireEvent.changeText(taskInput, "Task 3");
 
-    const addButton = screen.getByText("Add");
+    const addButton = screen.getByText("ADD");
     fireEvent.press(addButton);
 
     const mockDatePicker = screen.getByTestId("dateTimePicker");
@@ -89,10 +87,10 @@ describe("The HomePage", () => {
     await waitFor(async () => {
       render(<HomePage />);
     });
-    const taskInput = screen.getByPlaceholderText("Enter task name...");
+    const taskInput = screen.getByPlaceholderText("Add Task");
     fireEvent.changeText(taskInput, "Task 3");
 
-    const addButton = screen.getByText("Add");
+    const addButton = screen.getByText("ADD");
     fireEvent.press(addButton);
 
     const mockDatePicker = screen.getByTestId("dateTimePicker");
@@ -118,10 +116,10 @@ describe("The HomePage", () => {
       render(<HomePage />);
     });
 
-    const taskInput = screen.getByPlaceholderText("Enter task name...");
+    const taskInput = screen.getByPlaceholderText("Add Task");
     fireEvent.changeText(taskInput, "Task 3");
 
-    const addButton = screen.getByText("Add");
+    const addButton = screen.getByText("ADD");
     fireEvent.press(addButton);
 
     const mockDatePicker = screen.getByTestId("dateTimePicker");
@@ -140,17 +138,17 @@ describe("The HomePage", () => {
     });
 
     const taskItem3 = screen.getByTestId("task3Date");
-    expect(taskItem3.props.children).toBe("21/08/2023 6:53PM");
+    expect(taskItem3.props.children).toBe("21/08/2023     6:53 PM");
   });
   it("schedules a notification when new task is added by the user", async () => {
     await waitFor(async () => {
       render(<HomePage />);
     });
 
-    const taskInput = screen.getByPlaceholderText("Enter task name...");
+    const taskInput = screen.getByPlaceholderText("Add Task");
     fireEvent.changeText(taskInput, "Task 3");
 
-    const addButton = screen.getByText("Add");
+    const addButton = screen.getByText("ADD");
     fireEvent.press(addButton);
 
     const mockDatePicker = screen.getByTestId("dateTimePicker");
@@ -177,14 +175,4 @@ describe("The HomePage", () => {
       },
     ]);
   });
-  //   it("adds a task to local storage when user adds task", async () => {
-  //     let debugFunction;
-
-  //     await waitFor(async () => {
-  //       const { debug } = render(<HomePage />);
-  //       debugFunction = debug;
-  //     });
-
-  //     debugFunction();
-  //   });
 });

@@ -8,7 +8,6 @@ import {
   setNotificationFor,
 } from "../api/notification";
 import { getStorage, updateStorage } from "../api/localStorage";
-
 import AddTask from "./AddTask";
 
 const HomePage = () => {
@@ -39,14 +38,26 @@ const HomePage = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Reminders App</Text>
+      <View style={styles.heading}>
+        <Text
+          style={{
+            fontFamily: "PermanentMarker_400Regular",
+            fontSize: 50,
+            color: "white",
+          }}
+        >
+          Reminder App
+        </Text>
+      </View>
       <AddTask handleAdd={handleAdd} />
+
       <View style={styles.list}>
         <SwipeListView
           data={taskList}
           renderItem={TaskItem}
           renderHiddenItem={(data) => DeleteButton(data.index, handleDelete)}
-          rightOpenValue={-130}
+          rightOpenValue={-100}
+          // recalculateHiddenLayout={true}
         />
       </View>
     </View>
@@ -58,17 +69,17 @@ export default HomePage;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "column",
-    justifyContent: "space-around",
-    marginTop: 50,
-    height: "100%",
+    backgroundColor: "#4F6C9B",
+    alignItems: "center",
   },
   heading: {
-    textAlign: "center",
-    fontSize: 20,
+    flex: 1.1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 20,
   },
   list: {
-    backgroundColor: "white",
-    flex: 1,
+    flex: 7,
+    width: "100%",
   },
 });
