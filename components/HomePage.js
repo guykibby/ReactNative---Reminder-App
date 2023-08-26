@@ -71,8 +71,6 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "#4F6C9B",
     alignItems: "center",
-
-    // width: "100%",
   },
   heading: {
     flex: 1.1,
@@ -83,8 +81,5 @@ const styles = StyleSheet.create({
   list: {
     flex: 7,
     width: "100%",
-    // justifyContent: "center",
-    // alignItems: "center",
-    // backgroundColor: "yellow",
   },
 });
