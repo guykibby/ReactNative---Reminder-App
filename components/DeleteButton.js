@@ -20,11 +20,7 @@ export default DeleteButton;
 const styles = StyleSheet.create({
   container: {
     alignItems: "center",
-    // backgroundColor: "yellow",
-    // flex: 1,
-    // flexDirection: "row",
     justifyContent: "center",
-    // paddingRight: "5%",
     height: "100%",
   },
   backItem: {
@@ -49,8 +45,4 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 15,
   },
-  // icon: {
-  //   height: "100%",
-  //   aspectRatio: 1,
-  // },
 });

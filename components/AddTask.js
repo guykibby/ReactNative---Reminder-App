@@ -63,10 +63,8 @@ const styles = StyleSheet.create({
     width: "90%",
     flex: 1.2,
     flexDirection: "row",
-    // justifyContent: "space-between",
     alignItems: "center",
     gap: 14,
-    // backgroundColor: "pink",
   },
   input: {
     flex: 5,
@@ -79,8 +77,6 @@ const styles = StyleSheet.create({
   inputText: {
     fontSize: 22,
     fontWeight: "bold",
-    // padding: "5%",
-    // backgroundColor: "yellow",
   },
   addButton: {
     flex: 3,
@@ -88,15 +84,12 @@ const styles = StyleSheet.create({
     backgroundColor: "#03CAA4",
     color: "white",
     borderRadius: 5,
-    // width: "50%",
     justifyContent: "center",
     alignItems: "center",
   },
   buttonText: {
     fontSize: 25,
     fontWeight: "bold",
-    // padding: 10,]
     color: "white",
-    // backgroundColor: "yellow",
   },
 });

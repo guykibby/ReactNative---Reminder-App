@@ -11,15 +11,15 @@ const LoginPage = ({ navigation }) => {
   }
 
   const handlePress = async () => {
-    navigation.navigate("HomePage");
-    // const result = await LocalAuthentication.authenticateAsync();
-    // if (result.success) {
-    //   navigation.navigate("HomePage");
-    // } else if (result.error === "not_enrolled") {
-    //   Alert.alert("Please enable lock screen security on device!");
-    // } else {
-    //   Alert.alert("Authentication failed. Please go away!");
-    // }
+    // navigation.navigate("HomePage");
+    const result = await LocalAuthentication.authenticateAsync();
+    if (result.success) {
+      navigation.navigate("HomePage");
+    } else if (result.error === "not_enrolled") {
+      Alert.alert("Please enable lock screen security on device!");
+    } else {
+      Alert.alert("Authentication failed. Please go away!");
+    }
   };
 
   return (
@@ -56,7 +56,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    // backgroundColor: "green",
     marginTop: 30,
   },
   body: {
@@ -64,7 +63,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginBottom: "20%",
-    // backgroundColor: "yellow",
   },
   loginButton: {
     width: "60%",
