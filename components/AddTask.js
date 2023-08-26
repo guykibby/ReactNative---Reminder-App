@@ -16,9 +16,11 @@ const AddTask = ({ handleAdd }) => {
 
   const processDateTimeSelection = (event, selectedValue) => {
     const dateTime = new Date(selectedValue);
+    setShowDatePicker(false);
     if (datePickerMode === "date") {
       setDatePickerMode("time");
       setTaskDate(dateTime);
+      setShowDatePicker(true);
     } else if (datePickerMode === "time") {
       taskDate.setHours(dateTime.getHours(), dateTime.getMinutes());
       const newTask = {
