@@ -9,10 +9,3 @@ export const getPermissionsAsync = jest
 export const requestPermissionsAsync = jest
   .fn()
   .mockResolvedValue({ status: "granted" });
-
-// export default {
-//   setNotificationHandler,
-//   getPermissionsAsync,
-//   requestPermissionsAsync,
-//   scheduleNotificationAsync,
-// };
