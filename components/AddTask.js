@@ -16,11 +16,9 @@ const AddTask = ({ handleAdd }) => {
 
   const processDateTimeSelection = (event, selectedValue) => {
     const dateTime = new Date(selectedValue);
-    setShowDatePicker(false);
     if (datePickerMode === "date") {
       setDatePickerMode("time");
       setTaskDate(dateTime);
-      setShowDatePicker(true);
     } else if (datePickerMode === "time") {
       taskDate.setHours(dateTime.getHours(), dateTime.getMinutes());
       const newTask = {
@@ -63,7 +61,8 @@ export default AddTask;
 const styles = StyleSheet.create({
   container: {
     width: "90%",
-    flex: 1.2,
+    maxWidth: 500,
+    height: 80,
     flexDirection: "row",
     alignItems: "center",
     gap: 14,

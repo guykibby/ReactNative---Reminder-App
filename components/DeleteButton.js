@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
   backItem: {
     width: "90%",
     height: "84%",
+    maxWidth: 500,
     flexDirection: "row",
     alignItems: "center",
     padding: 5,

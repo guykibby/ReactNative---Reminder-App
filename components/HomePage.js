@@ -57,7 +57,7 @@ const HomePage = () => {
           renderItem={TaskItem}
           renderHiddenItem={(data) => DeleteButton(data.index, handleDelete)}
           rightOpenValue={-100}
-          // recalculateHiddenLayout={true}
+          recalculateHiddenLayout={true}
         />
       </View>
     </View>
@@ -73,13 +73,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   heading: {
-    flex: 1.1,
+    height: 70,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
   },
   list: {
-    flex: 7,
+    flex: 1,
     width: "100%",
   },
 });

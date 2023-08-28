@@ -1,7 +1,6 @@
 import { View, Text, StyleSheet } from "react-native";
 import { format } from "date-fns";
-// import { FontAwesome5 } from "@expo/vector-icons";
-import { Feather } from "@expo/vector-icons";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const TaskItem = ({ item, index }) => {
   let itemDate = new Date(item.timestamp);
@@ -17,13 +16,12 @@ const TaskItem = ({ item, index }) => {
             {formattedDate}
           </Text>
         </View>
-        {/* <FontAwesome5
+        <FontAwesome5
           name="grip-lines-vertical"
-          size={40}
-          color="black"
-          // style={{ height: 30 }}
-        /> */}
-        <Feather name="more-vertical" size={24} color="black" />
+          size={35}
+          color="lightgrey"
+          style={styles.icon}
+        />
       </View>
     </View>
   );
@@ -40,6 +38,7 @@ const styles = StyleSheet.create({
   taskItem: {
     width: "90%",
     height: "84%",
+    maxWidth: 500,
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -61,5 +60,8 @@ const styles = StyleSheet.create({
   },
   taskDate: {
     fontSize: 15,
+  },
+  icon: {
+    marginRight: 3,
   },
 });
