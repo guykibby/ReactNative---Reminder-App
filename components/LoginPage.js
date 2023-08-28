@@ -51,22 +51,22 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#4F6C9B",
+    justifyContent: "space-between",
   },
   heading: {
-    flex: 1,
+    height: 60,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 30,
   },
   body: {
-    flex: 7,
+    flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginBottom: "20%",
   },
   loginButton: {
-    width: "60%",
-    height: "13%",
+    width: 250,
+    height: 70,
     backgroundColor: "#FB4D3D",
     justifyContent: "center",
     alignItems: "center",
