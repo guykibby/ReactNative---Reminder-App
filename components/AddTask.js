@@ -38,7 +38,7 @@ const AddTask = ({ handleAdd }) => {
           placeholder="Add Task"
           style={styles.inputText}
           value={taskName}
-          onChangeText={(e) => e.length < 55 && setTaskName(e)}
+          onChangeText={(e) => setTaskName(e)}
         ></TextInput>
       </View>
       <Pressable style={styles.addButton} onPress={openDatePicker}>
