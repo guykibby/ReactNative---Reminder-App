@@ -39,15 +39,7 @@ const HomePage = () => {
   return (
     <View style={styles.container}>
       <View style={styles.heading}>
-        <Text
-          style={{
-            fontFamily: "PermanentMarker_400Regular",
-            fontSize: 50,
-            color: "white",
-          }}
-        >
-          Reminder App
-        </Text>
+        <Text style={styles.headingText}>Reminder App</Text>
       </View>
       <AddTask handleAdd={handleAdd} />
 
@@ -77,6 +69,11 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 20,
+  },
+  headingText: {
+    fontFamily: "PermanentMarker_400Regular",
+    fontSize: 50,
+    color: "white",
   },
   list: {
     flex: 1,

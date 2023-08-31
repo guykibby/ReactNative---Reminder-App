@@ -25,16 +25,7 @@ const LoginPage = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <View style={styles.heading}>
-        <Text
-          style={{
-            fontFamily: "PermanentMarker_400Regular",
-            fontSize: 40,
-            color: "white",
-            marginTop: 3,
-          }}
-        >
-          Reminders App
-        </Text>
+        <Text style={styles.headingText}>Reminders App</Text>
       </View>
       <View style={styles.body}>
         <Pressable style={styles.loginButton} onPress={handlePress}>
@@ -58,6 +49,12 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     marginTop: 30,
+  },
+  headingText: {
+    fontFamily: "PermanentMarker_400Regular",
+    fontSize: 40,
+    color: "white",
+    marginTop: 3,
   },
   body: {
     flex: 1,
