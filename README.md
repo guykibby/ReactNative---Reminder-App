@@ -16,4 +16,4 @@ Terminal Commands:
 - Notifications
 - Context Component
 - Stack Navigation
-- eLocal Storage
+- Local Storage
