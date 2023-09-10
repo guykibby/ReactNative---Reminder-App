@@ -1,4 +1,4 @@
-#  Reminder App
+#  Reminder App for task management 
 
 ## Getting started
 
